@@ -7,7 +7,7 @@ import { Row, Col } from 'react-bootstrap';
 import RequirementsTooltip from './RequirementsTooltip';
 import images from '../itemTracker/Images';
 import placeholderImg from '../assets/slot test.png';
-import './Location.css';
+import '../css/Location.css';
 import ColorScheme from '../customization/ColorScheme';
 import ItemLocation from '../logic/ItemLocation';
 import KeyDownWrapper from '../KeyDownWrapper';

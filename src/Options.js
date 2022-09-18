@@ -4,7 +4,7 @@ import {
     Button, Col, Container, Form, FormCheck, FormControl, FormGroup, FormLabel, /* FormSelect, */Row,
 } from 'react-bootstrap';
 import React from 'react';
-import './options.css';
+import './css/options.css';
 import { Link } from 'react-router-dom';
 import Settings from './permalink/Settings';
 import Acknowledgement from './Acknowledgment';

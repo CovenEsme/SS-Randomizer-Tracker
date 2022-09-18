@@ -3,7 +3,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 import LocationGroup from './LocationGroup';
-import './locationTracker.css';
+import '../css/locationTracker.css';
 import ColorScheme from '../customization/ColorScheme';
 import Logic from '../logic/Logic';
 import areaBlacklist from '../data/areaBlacklist.json';

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './RequirementsTooltip.css';
+import '../css/RequirementsTooltip.css';
 import _ from 'lodash';
 
 class RequirementsTooltip extends React.Component {

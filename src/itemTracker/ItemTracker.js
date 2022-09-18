@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './itemTracker.css';
+import '../css/itemTracker.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import BWheel from './BWheel';

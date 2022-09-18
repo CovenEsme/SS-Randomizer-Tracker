@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Contributor from './additionalComponents/Contributor';
 import ImageLink from './additionalComponents/ImageLink';
 import contributors from './data/contributors.json';
-import './FullAcknowledgement.css';
+import './css/FullAcknowledgement.css';
 
 class FullAcknowledgement extends React.Component {
     // eslint-disable-next-line class-methods-use-this

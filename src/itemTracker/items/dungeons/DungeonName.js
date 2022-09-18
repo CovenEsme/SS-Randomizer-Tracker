@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './dungeons.css';
+import '../../../css/dungeons.css';
 import ColorScheme from '../../../customization/ColorScheme';
 import Logic from '../../../logic/Logic';
 import KeyDownWrapper from '../../../KeyDownWrapper';
