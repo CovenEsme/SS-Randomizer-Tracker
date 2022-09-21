@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Tracker from './Tracker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Options from './Options';
-import FullAcknowledgement from './FullAcknowledgement';
+import FullAcknowledgement from './acknowledgement/FullAcknowledgement';
 import EntranceTracker from './entranceTracker/EntranceTracker';
 
 function App() {

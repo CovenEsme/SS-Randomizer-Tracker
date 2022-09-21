@@ -5,11 +5,13 @@ import _ from 'lodash';
 class Contributor extends React.Component {
     render() {
         return (
-            <span style={{ padding: '1%' }}>
-                <span style={{ fontWeight: '500' }}>{this.props.name}</span>
+            <span>
+                <span>
+                    {this.props.name}
+                </span>
                 {
                     _.map(this.props.links, (link, type) => (
-                        <a href={link} aria-label={type} style={{ padding: '0.25%' }}><i className={`fab fa-${type}`} /></a>
+                        <a href={link} aria-label={type}><span className={`fab fa-${type} text-blue-700 px-0.5`} /></a>
                     ))
                 }
             </span>

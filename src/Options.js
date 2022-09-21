@@ -7,7 +7,7 @@ import React from 'react';
 import './css/options.css';
 import { Link } from 'react-router-dom';
 import Settings from './permalink/Settings';
-import Acknowledgement from './Acknowledgment';
+import Acknowledgement from './acknowledgement/Acknowledgment';
 
 export default class Options extends React.Component {
     constructor(props) {
