@@ -2,18 +2,19 @@
     "creators": [
         {
             "name": "cjs07",
-            "links": {
+            "urls": {
                 "github": "https://github.com/cjs8487",
                 "twitch": "https://twitch.tv/cjs0789",
                 "youtube": "https://youtube.com/user/cjs0789",
                 "twitter": "https://twitter.com/cjs078"
-            }
+            },
+            "attributions": []
         }
     ],
     "contributors": [
         {
             "name": "Floha258",
-            "links": {
+            "urls": {
                 "github": "https://github.com/floha258",
                 "twitch": "https://twitch.tv/floha258"
             },
@@ -24,8 +25,9 @@
         },
         {
             "name": "muzugalium",
-            "links": {
-                "github": "https://github.com/muzugalium"
+            "urls": {
+                "github": "https://github.com/muzugalium",
+                "twitch": "https://twitch.tv/muzugalium"
             },
             "attributions": [
                 "Counters",
@@ -35,7 +37,7 @@
         },
         {
             "name": "Extodasher",
-            "links": {
+            "urls": {
                 "github": "https://github.com/Extodasher"
             },
             "attributions": [
@@ -46,18 +48,40 @@
         },
         {
             "name": "CapitanBublo",
-            "links": {
+            "urls": {
                 "github": "https://github.com/CapitanBublo"
             },
             "attributions": [
                 "Assets"
+            ]
+        },
+        {
+            "name": "CovenEsme",
+            "urls": {
+                "github": "https://github.com/covenesme",
+                "twitch": "https://twitch.tv/covenesme"
+            },
+            "attributions": [
+                "UI Redesign",
+                "Styling"
+            ]
+        },
+        {
+            "name": "YourAverageLink",
+            "urls": {
+                "github": "https://github.com/YourAverageLink",
+                "twitch": "https://twitch.tv/YourAverageLink"
+            },
+            "attributions": [
+                "Triforce and Scrap Shop Upgrades Support",
+                "Bug Fixes"
             ]
         }
     ],
     "additionalShoutouts": [
         {
             "name": "lepelog",
-            "links": {
+            "urls": {
 
             },
             "attributions": [
@@ -67,7 +91,7 @@
         },
         {
             "name": "peppernicus",
-            "links": {
+            "urls": {
 
             },
             "attributions": [
@@ -76,7 +100,7 @@
         },
         {
             "name": "azer67",
-            "links": {
+            "urls": {
 
             },
             "attributions": [
@@ -85,7 +109,7 @@
         },
         {
             "name": "zeldex72",
-            "links": {
+            "urls": {
 
             },
             "attributions": [
@@ -94,7 +118,7 @@
         },
         {
             "name": "wooferzfg",
-            "links": {
+            "urls": {
 
             },
             "attributions": [
