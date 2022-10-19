@@ -171,12 +171,23 @@ class Tracker extends React.Component {
             startingItems.push('Ruby Tablet');
             startingItems.push('Amber Tablet');
         }
-        if (!this.state.settings.getOption('Swordless')) {
-            startingItems.push('Progressive Sword');
-            startingItems.push('Progressive Sword');
-        }
         if (this.state.settings.getOption('Start with Adventure Pouch')) {
             startingItems.push('Progressive Pouch');
+        }
+        const startingSword = this.state.settings.getOption('Starting Sword');
+        if (!(startingSword === 'Swordless')) {
+            const swordsToAdd = {
+                'Practice Sword': 1,
+                'Goddess Sword': 2,
+                'Goddess Longsword': 3,
+                'Goddess White Sword': 4,
+                'Master Sword': 5,
+                'True Master Sword': 6,
+            };
+
+            for (let swordsAdded = 0; swordsAdded < swordsToAdd[startingSword]; swordsAdded++) {
+                startingItems.push('Progressive Sword');
+            }
         }
         const logic = new Logic();
         await logic.initialize(this.state.settings, startingItems);
@@ -299,7 +310,7 @@ class Tracker extends React.Component {
                                     handleDungeonUpdate={this.handleDungeonClick}
                                     items={this.state.trackerItems}
                                     logic={this.state.logic}
-                                    skyKeep={!this.state.settings.getOption('Skip Sky Keep')}
+                                    skyKeep={!(this.state.settings.getOption('Empty Unrequired Dungeons') & (!this.state.settings.getOption('Triforce Required') | this.state.settings.getOption('Triforce Shuffle') === 'Anywhere'))}
                                     entranceRando={this.state.settings.getOption('Randomize Entrances')}
                                     trialRando={this.state.settings.getOption('Randomize Silent Realms')}
                                     colorScheme={this.state.colorScheme}
