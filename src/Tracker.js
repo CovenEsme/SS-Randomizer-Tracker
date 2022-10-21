@@ -22,21 +22,18 @@ class Tracker extends React.Component {
     constructor(props) {
         super(props);
         const path = new URLSearchParams(this.props.location.search);
-        const permalink = decodeURIComponent(path.get('options'));
-        let colorScheme = JSON.parse(localStorage.getItem('ssrTrackerColorScheme'));
-        if (!colorScheme) {
-            colorScheme = new ColorScheme();
-        }
+        const colorScheme = JSON.parse(localStorage.getItem('ssrTrackerColorScheme'));
         let layout = localStorage.getItem('ssrTrackerLayout');
         if (!layout) {
             layout = 'inventory';
         }
         this.state = {
             settings: new Settings(),
+            permalink: decodeURIComponent(path.get('options')),
             width: window.innerWidth,
             height: window.innerHeight,
             showCustomizationDialog: false,
-            colorScheme,
+            colorScheme: colorScheme ? new ColorScheme(colorScheme) : new ColorScheme(),
             layout,
             showEntranceDialog: false,
         };
@@ -52,16 +49,10 @@ class Tracker extends React.Component {
         this.updateColorScheme = this.updateColorScheme.bind(this);
         this.reset = this.reset.bind(this);
         this.updateLayout = this.updateLayout.bind(this);
-        // const storedState = JSON.parse(localStorage.getItem('ssrTrackerState'));
-        // if (storedState) {
-        //     this.importState(storedState);
-        // } else {
-        //     this.initialize(permalink);
-        // }
-        this.initialize(permalink);
     }
 
     componentDidMount() {
+        this.mounted = true;
         // updating window properties
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
@@ -79,6 +70,7 @@ class Tracker extends React.Component {
     }
 
     componentWillUnmount() {
+        this.mounted = false;
         window.removeEventListener('resize', this.updateWindowDimensions);
     }
 
@@ -191,7 +183,9 @@ class Tracker extends React.Component {
         }
         const logic = new Logic();
         await logic.initialize(this.state.settings, startingItems);
-        this.setState({ logic });
+        if (this.mounted) {
+            this.setState({ logic });
+        }
     }
 
     updateColorScheme(colorScheme) {
@@ -205,14 +199,15 @@ class Tracker extends React.Component {
 
     async importState(state) {
         const oldLogic = state.logic;
-        // this.setState({loading: true})
         const settings = new Settings();
         settings.loadFrom(state.settings);
         state.settings = settings;
         state.logic = new Logic();
         await state.logic.initialize(state.settings, []);
         state.logic.loadFrom(oldLogic);
-        this.setState(state);
+        if (this.mounted) {
+            this.setState(state);
+        }
         // this.forceUpdate();
     }
 
@@ -228,7 +223,8 @@ class Tracker extends React.Component {
 
     render() {
         // ensure that logic is properly initialized befopre attempting to render the actual tracker
-        if (_.isNil(this.state.logic) || this.state.loading) {
+        if (_.isNil(this.state.logic)) {
+            this.initialize(this.state.permalink);
             return (
                 <div />
             );
@@ -294,7 +290,7 @@ class Tracker extends React.Component {
                             />
                         </Col>
                         <Col>
-                            <Row noGutters>
+                            <Row>
                                 <BasicCounters
                                     locationsChecked={this.state.logic.getTotalLocationsChecked()}
                                     totalAccessible={this.state.logic.getTotalLocationsInLogic()}
@@ -302,7 +298,7 @@ class Tracker extends React.Component {
                                     colorScheme={this.state.colorScheme}
                                 />
                             </Row>
-                            <Row noGutters>
+                            <Row>
                                 <DungeonTracker
                                     style={{ height: (this.state.height * 0.95) * 0.3 }}
                                     styleProps={dungeonTrackerStyle}
@@ -317,8 +313,8 @@ class Tracker extends React.Component {
                                     groupClicked={this.handleGroupClick}
                                 />
                             </Row>
-                            <Row style={{ paddingRight: '10%', paddingTop: '2.5%', height: (this.state.height * 0.95) / 2 }} noGutters>
-                                <Col style={{ overflowY: 'scroll', overflowX: 'auto', height: (this.state.height * 0.95) - 447 }} noGutters>
+                            <Row style={{ paddingRight: '10%', paddingTop: '2.5%', height: (this.state.height * 0.95) / 2 }}>
+                                <Col style={{ overflowY: 'scroll', overflowX: 'auto', height: (this.state.height * 0.95) - 447 }}>
                                     <CubeTracker
                                         className="overflowAuto"
                                         locations={this.state.logic.getExtraChecksForArea(this.state.expandedGroup)}

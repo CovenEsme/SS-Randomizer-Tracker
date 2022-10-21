@@ -20,9 +20,10 @@ class CubeTracker extends React.Component {
                 {
                     _.map(locationRow, (location) => (
                         !_.isNil(location) && (
-                            <Col>
+                            <Col key={location.name}>
                                 <Location
                                     location={location}
+                                    checked={false}
                                     hasGroup={false}
                                     handler={this.props.locationHandler}
                                     meetsRequirement={this.props.logic.isRequirementMet}
@@ -93,10 +94,10 @@ class CubeTracker extends React.Component {
     }
 }
 CubeTracker.propTypes = {
-    locations: PropTypes.arrayOf(PropTypes.instanceOf(ItemLocation)).isRequired,
+    locations: PropTypes.arrayOf(PropTypes.shape(ItemLocation)).isRequired,
     locationHandler: PropTypes.func.isRequired,
     logic: PropTypes.instanceOf(Logic).isRequired,
-    colorScheme: PropTypes.instanceOf(ColorScheme).isRequired,
+    colorScheme: PropTypes.shape(ColorScheme).isRequired,
     containerHeight: PropTypes.number.isRequired,
 };
 export default CubeTracker;

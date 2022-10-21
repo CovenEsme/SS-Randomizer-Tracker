@@ -33,7 +33,9 @@ class LocationGroup extends React.Component {
                     _.map(locationRow, (location) => (
                         !_.isNil(location) && (
                             <Location
+                                key={location}
                                 location={location}
+                                checked={false}
                                 group={this.props.groupName}
                                 handler={this.props.locationHandler}
                                 meetsRequirement={this.props.meetsRequirement}
@@ -112,9 +114,9 @@ LocationGroup.propTypes = {
     groupName: PropTypes.string.isRequired,
     handler: PropTypes.func.isRequired,
     locationHandler: PropTypes.func.isRequired,
-    locations: PropTypes.arrayOf(PropTypes.instanceOf(ItemLocation)).isRequired,
+    locations: PropTypes.arrayOf(PropTypes.shape(ItemLocation)).isRequired,
     meetsRequirement: PropTypes.func.isRequired,
-    colorScheme: PropTypes.instanceOf(ColorScheme).isRequired,
+    colorScheme: PropTypes.shape(ColorScheme).isRequired,
     containerHeight: PropTypes.number.isRequired,
 };
 export default LocationGroup;

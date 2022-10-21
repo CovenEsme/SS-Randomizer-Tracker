@@ -61,16 +61,17 @@ class DungeonTracker extends React.Component {
 
         const numDungeons = this.props.skyKeep ? 7 : 6;
         const iconsPerDungeon = this.props.entranceRando === 'None' ? 2 : 3;
-        const colWidth = width / (numDungeons * iconsPerDungeon);
-        const secondRowWidth = width / 4;
+        const colWidth = `${width / (numDungeons * iconsPerDungeon)}px`;
+        const dungeonBossColWidth = `${width / numDungeons}px`;
+        const hintMarkerWidth = `${width / 16}px`;
+        const trialGateWidth = `${width / 4}px`;
         return (
             <Col
-                noGutters
                 // style={{ padding: 0 }}
                 id="dungeonTracker"
                 ref={(divElement) => { this.divElement = divElement; }}
             >
-                <Row noGutters>
+                <Row>
                     {
                         this.props.entranceRando !== 'None' && (
                             <Col id="svEntrance">
@@ -175,7 +176,7 @@ class DungeonTracker extends React.Component {
                         )
                     }
                 </Row>
-                <Row noGutters>
+                <Row>
                     <Col id="svName" className="dungeonName">
                         <DungeonName
                             dungeon="SV"
@@ -257,35 +258,35 @@ class DungeonTracker extends React.Component {
                         )
                     }
                 </Row>
-                <Row noGutters>
+                <Row>
                     <Col>
-                        <DungeonIcon image={g1} iconLabel="Ghirahim 1" area="Skyview" width={colWidth * iconsPerDungeon} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={g1} iconLabel="Ghirahim 1" area="Skyview" width={dungeonBossColWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={scaldera} iconLabel="Scaldera" area="Earth Temple" width={colWidth * iconsPerDungeon} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={scaldera} iconLabel="Scaldera" area="Earth Temple" width={dungeonBossColWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={moldarach} iconLabel="Moldarach" area="Lanayru Mining Facility" width={colWidth * iconsPerDungeon} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={moldarach} iconLabel="Moldarach" area="Lanayru Mining Facility" width={dungeonBossColWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={koloktos} iconLabel="Koloktos" area="Ancient Cistern" width={colWidth * iconsPerDungeon} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={koloktos} iconLabel="Koloktos" area="Ancient Cistern" width={dungeonBossColWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={tentalus} iconLabel="Tentalus" area="Sandship" width={colWidth * iconsPerDungeon} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={tentalus} iconLabel="Tentalus" area="Sandship" width={dungeonBossColWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={g2} iconLabel="Ghirahim 2" area="Fire Sanctuary" width={colWidth * iconsPerDungeon} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={g2} iconLabel="Ghirahim 2" area="Fire Sanctuary" width={dungeonBossColWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     {
                         this.props.skyKeep && (
                             <Col id="skChecks">
-                                <DungeonIcon image={dreadfuse} iconLabel="Dreadfuse" area="Sky Keep" width={colWidth * iconsPerDungeon} groupClicked={this.props.groupClicked} />
+                                <DungeonIcon image={dreadfuse} iconLabel="Dreadfuse" area="Sky Keep" width={dungeonBossColWidth} groupClicked={this.props.groupClicked} />
                             </Col>
                         )
                     }
                 </Row>
 
-                <Row noGutters>
+                <Row>
                     <Col id="svChecks">
                         <AreaCounters totalChecksLeftInArea={this.props.logic.getTotalCountForArea('Skyview')} totalChecksAccessible={this.props.logic.getInLogicCountForArea('Skyview')} colorScheme={this.props.colorScheme} />
                     </Col>
@@ -319,7 +320,7 @@ class DungeonTracker extends React.Component {
                     }
 
                 </Row>
-                <Row noGutters>
+                <Row>
                     {
                         this.props.trialRando && (
                             <Col>
@@ -328,7 +329,7 @@ class DungeonTracker extends React.Component {
                         )
                     }
                     <Col>
-                        <HintMarker width={secondRowWidth / 4} />
+                        <HintMarker width={hintMarkerWidth} />
                     </Col>
                     {
                         this.props.trialRando && (
@@ -338,7 +339,7 @@ class DungeonTracker extends React.Component {
                         )
                     }
                     <Col>
-                        <HintMarker width={secondRowWidth / 4} />
+                        <HintMarker width={hintMarkerWidth} />
                     </Col>
                     {
                         this.props.trialRando && (
@@ -348,7 +349,7 @@ class DungeonTracker extends React.Component {
                         )
                     }
                     <Col>
-                        <HintMarker width={secondRowWidth / 4} />
+                        <HintMarker width={hintMarkerWidth} />
                     </Col>
                     {
                         this.props.trialRando && (
@@ -358,24 +359,24 @@ class DungeonTracker extends React.Component {
                         )
                     }
                     <Col>
-                        <HintMarker width={secondRowWidth / 4} />
+                        <HintMarker width={hintMarkerWidth} />
                     </Col>
                 </Row>
-                <Row noGutters>
+                <Row>
                     <Col>
-                        <DungeonIcon image={trialGate} iconLabel="Skyloft Silent Realm" area="Skyloft Silent Realm" width={secondRowWidth} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={trialGate} iconLabel="Skyloft Silent Realm" area="Skyloft Silent Realm" width={trialGateWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={faronTrialGate} iconLabel="Faron Silent Realm" area="Faron Silent Realm" width={secondRowWidth} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={faronTrialGate} iconLabel="Faron Silent Realm" area="Faron Silent Realm" width={trialGateWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={lanayruTrialGate} iconLabel="Lanayru Silent Realm" area="Lanayru Silent Realm" width={secondRowWidth} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={lanayruTrialGate} iconLabel="Lanayru Silent Realm" area="Lanayru Silent Realm" width={trialGateWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                     <Col>
-                        <DungeonIcon image={eldinTrialGate} iconLabel="Eldin Silent Realm" area="Eldin Silent Realm" width={secondRowWidth} groupClicked={this.props.groupClicked} />
+                        <DungeonIcon image={eldinTrialGate} iconLabel="Eldin Silent Realm" area="Eldin Silent Realm" width={trialGateWidth} groupClicked={this.props.groupClicked} />
                     </Col>
                 </Row>
-                <Row noGutters>
+                <Row>
                     <Col id="skyloftTrialChecks">
                         <AreaCounters totalChecksLeftInArea={this.props.logic.getTotalCountForArea('Skyloft Silent Realm')} totalChecksAccessible={this.props.logic.getInLogicCountForArea('Skyloft Silent Realm')} colorScheme={this.props.colorScheme} />
                     </Col>
@@ -402,7 +403,7 @@ DungeonTracker.propTypes = {
     logic: PropTypes.instanceOf(Logic).isRequired,
     styleProps: PropTypes.shape().isRequired,
     handleDungeonUpdate: PropTypes.func.isRequired,
-    colorScheme: PropTypes.instanceOf(ColorScheme).isRequired,
+    colorScheme: PropTypes.shape(ColorScheme).isRequired,
     handleItemClick: PropTypes.func.isRequired,
     groupClicked: PropTypes.func.isRequired,
     entranceRando: PropTypes.string.isRequired,

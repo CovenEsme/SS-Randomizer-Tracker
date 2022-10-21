@@ -27,7 +27,16 @@ class ContributorGroup extends React.Component {
 }
 
 ContributorGroup.propTypes = {
-    contributorsList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    contributorsList: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            urls: PropTypes.shape({
+                img: PropTypes.string,
+                link: PropTypes.string,
+            }).isRequired,
+            attributions: PropTypes.arrayOf(PropTypes.string).isRequired,
+        }),
+    ).isRequired,
 };
 
 export default ContributorGroup;

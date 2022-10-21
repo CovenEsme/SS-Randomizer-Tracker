@@ -33,10 +33,10 @@ class Contributor extends React.Component {
 
 Contributor.propTypes = {
     name: PropTypes.string.isRequired,
-    urls: PropTypes.arrayOf(PropTypes.shape({
+    urls: PropTypes.shape({
         img: PropTypes.string,
         link: PropTypes.string,
-    })).isRequired,
+    }).isRequired,
     attributions: PropTypes.arrayOf(PropTypes.string).isRequired,
     className: PropTypes.string.isRequired,
 };

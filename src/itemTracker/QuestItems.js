@@ -54,10 +54,10 @@ class QuestItems extends React.Component {
             left: width / 1.1,
         };
 
-        const letterWidth = this.props.styleProps.width / 6.5;
-        const cBeetleWidth = this.props.styleProps.width / 6.5;
-        const rattleWidth = this.props.styleProps.width / 6.5;
-        const crystalWidth = this.props.styleProps.width / 8;
+        const letterWidth = `${this.props.styleProps.width / 6.5}px`;
+        const cBeetleWidth = `${this.props.styleProps.width / 6.5}px`;
+        const rattleWidth = `${this.props.styleProps.width / 6.5}px`;
+        const crystalWidth = `${this.props.styleProps.width / 8}px`;
 
         return (
             <div
@@ -78,7 +78,7 @@ class QuestItems extends React.Component {
                     <GratitudeCrystals logic={this.props.logic} onChange={this.props.handleItemClick} imgWidth={crystalWidth} />
                 </div>
                 <div style={counterStyle}>
-                    <CrystalCounter current={this.props.logic.getCrystalCount()} colorScheme={this.props.colorScheme} />
+                    <CrystalCounter current={this.props.logic.getCrystalCount().toString()} colorScheme={this.props.colorScheme} />
                 </div>
             </div>
         );
@@ -89,6 +89,6 @@ QuestItems.propTypes = {
     logic: PropTypes.instanceOf(Logic).isRequired,
     handleItemClick: PropTypes.func.isRequired,
     styleProps: PropTypes.shape().isRequired,
-    colorScheme: PropTypes.instanceOf(ColorScheme).isRequired,
+    colorScheme: PropTypes.shape(ColorScheme).isRequired,
 };
 export default QuestItems;

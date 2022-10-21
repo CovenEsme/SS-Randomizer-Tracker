@@ -52,7 +52,7 @@ function Location(props) {
 
     return (
         <div className="location-container" onClick={onClick} onKeyDown={KeyDownWrapper.onSpaceKey(onClick)} role="button" tabIndex="0" onContextMenu={displayMenu}>
-            <Row noGutters>
+            <Row>
                 <Col
                     style={style}
                     data-tip={props.location.needs}
@@ -82,9 +82,9 @@ Location.propTypes = {
     checked: PropTypes.bool.isRequired,
     group: PropTypes.string,
     handler: PropTypes.func.isRequired,
-    location: PropTypes.shape(PropTypes.instanceOf(ItemLocation)).isRequired,
-    meetsRequirement: PropTypes.bool.isRequired,
-    colorScheme: PropTypes.instanceOf(ColorScheme).isRequired,
+    location: PropTypes.shape(ItemLocation).isRequired,
+    meetsRequirement: PropTypes.func.isRequired,
+    colorScheme: PropTypes.shape(ColorScheme).isRequired,
     hasGroup: PropTypes.bool,
 };
 Location.defaultProps = {

@@ -177,21 +177,6 @@ class Logic {
             _.set(this.additionalLocations, [area, location], extraLocation);
             _.set(this.max, _.camelCase(location), 1);
         });
-        _.forEach(hints, (hint, hintName) => {
-            const extraLocation = ItemLocation.emptyLocation();
-            const { area, location } = Locations.splitLocationName(hintName);
-            extraLocation.name = location;
-            extraLocation.logicSentence = this.getRequirement(hintName);
-            extraLocation.booleanExpression = LogicHelper.booleanExpressionForRequirements(this.getRequirement(hintName));
-            const simplifiedExpression = extraLocation.booleanExpression.simplify({
-                implies: (firstRequirement, secondRequirement) => LogicHelper.requirementImplies(firstRequirement, secondRequirement),
-            });
-            const evaluatedRequirements = LogicHelper.evaluatedRequirements(simplifiedExpression);
-            const readablerequirements = LogicHelper.createReadableRequirements(evaluatedRequirements);
-            extraLocation.needs = readablerequirements;
-            _.set(this.additionalLocations, [area, location], extraLocation);
-            _.set(this.max, _.camelCase(location), 1);
-        });
         this.locations.updateLocationLogic();
         // do an initial requirements check to ensure nothing requirements and starting items are properly considered
         this.checkAllRequirements();

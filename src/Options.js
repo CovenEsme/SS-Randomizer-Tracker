@@ -95,19 +95,8 @@ export default class Options extends React.Component {
                 internal: 'minigame',
             },
             {
-                display: 'Max Batreaux Reward',
-                internal: 'max-batreaux-reward',
-                choice: true,
-                choices: [
-                    0,
-                    5,
-                    10,
-                    30,
-                    40,
-                    50,
-                    70,
-                    80,
-                ],
+                display: 'Batreaux',
+                internal: 'batreaux',
             },
             {
                 display: 'Loose Crystals',
@@ -140,6 +129,12 @@ export default class Options extends React.Component {
             {
                 display: 'Shop Mode',
                 internal: 'shop-mode',
+                choice: true,
+                choices: [
+                    'Vanilla',
+                    'Always Junk',
+                    'Randomized',
+                ],
             },
             {
                 display: 'Beedle\'s Shop Ship',
@@ -198,6 +193,7 @@ export default class Options extends React.Component {
         for (let i = 0; i < this.cubeOptions.length; i += 3) {
             this.cubesSplitListing.push(this.cubeOptions.slice(i, i + 3));
         }
+        this.initializeSettings = this.initializeSettings.bind(this);
         this.changeBinaryOption = this.changeBinaryOption.bind(this);
         this.changeStartingTablets = this.changeStartingTablets.bind(this);
         this.changeEntranceRando = this.changeEntranceRando.bind(this);
@@ -207,17 +203,29 @@ export default class Options extends React.Component {
         this.changeGoddess = this.changeBannedLocation.bind(this, 'goddess');
         this.changeStartingSword = this.changeStartingSword.bind(this);
         this.changeRaceMode = this.changeBinaryOption.bind(this, 'Empty Unrequired Dungeons');
-        this.changeClosedThunderhead = this.changeBinaryOption.bind(this, 'Closed Thunderhead');
+        this.changeOpenThunderhead = this.changeOpenThunderhead.bind(this);
         this.changeTriforceRequired = this.changeBinaryOption.bind(this, 'Triforce Required');
         this.changeTriforceShuffle = this.changeTriforceShuffle.bind(this);
         this.changeHeroMode = this.changeBinaryOption.bind(this, 'Hero Mode');
         this.changeStartPouch = this.changeBinaryOption.bind(this, 'Start with Adventure Pouch');
         this.permalinkChanged = this.permalinkChanged.bind(this);
+    }
 
-        this.state.settings.init().then(() => {
-            this.state.settings.loadDefaults();
+    componentDidMount() {
+        this.mounted = true;
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+
+    async initializeSettings() {
+        await this.state.settings.init();
+        this.state.settings.loadDefaults();
+
+        if (this.mounted) {
             this.setState({ ready: true });
-        });
+        }
     }
 
     changeBinaryOption(option) {
@@ -299,6 +307,12 @@ export default class Options extends React.Component {
         this.forceUpdate();
     }
 
+    changeOpenThunderhead(e) {
+        const { value } = e.target;
+        this.state.settings.setOption('Open Thunderhead', value);
+        this.forceUpdate();
+    }
+
     permalinkChanged(e) {
         try {
             this.state.settings.updateFromPermalink(e.target.value);
@@ -310,6 +324,7 @@ export default class Options extends React.Component {
 
     render() {
         if (!this.state.ready) {
+            this.settingsInitPromise = this.initializeSettings();
             return (
                 <div />
             );
@@ -369,19 +384,19 @@ export default class Options extends React.Component {
                                         typeList.map((type) => {
                                             if (type.display === 'Shop Mode') {
                                                 return (
-                                                    <Col>
+                                                    <Col key={type}>
                                                         <FormLabel>{type.display}</FormLabel>
                                                     </Col>
                                                 );
                                             }
                                             if (type.display === 'Max Batreaux Reward') {
                                                 return (
-                                                    <Col>
+                                                    <Col key={type}>
                                                         <FormLabel>{type.display}</FormLabel>
                                                         <FormControl as="select" onChange={this.changeBatreaux} value={this.state.settings.getOption('Max Batreaux Reward')}>
                                                             {
                                                                 _.map(type.choices, (choice) => (
-                                                                    <option>{choice}</option>
+                                                                    <option key={choice}>{choice}</option>
                                                                 ))
                                                             }
                                                         </FormControl>
@@ -412,7 +427,7 @@ export default class Options extends React.Component {
                                     id="shopMode"
                                     onChange={this.changeShopMode}
                                     value={this.state.settings.getOption('Shop Mode')}
-                                    custom
+                                    custom="true"
                                 >
                                     <option>Vanilla</option>
                                     <option>Always Junk</option>
@@ -428,7 +443,7 @@ export default class Options extends React.Component {
                                     id="rupeesanity"
                                     onChange={this.changeRupeesanityMode}
                                     value={this.state.settings.getOption('Rupeesanity')}
-                                    custom
+                                    custom="true"
                                 >
                                     <option>Vanilla</option>
                                     <option>No Quick Beetle</option>
@@ -475,7 +490,7 @@ export default class Options extends React.Component {
                                                 id="entranceRandoOptions"
                                                 onChange={this.changeEntranceRando}
                                                 value={this.state.settings.getOption('Randomize Entrances')}
-                                                custom
+                                                custom="true"
                                             >
                                                 <option>None</option>
                                                 <option>Dungeons</option>
@@ -497,7 +512,7 @@ export default class Options extends React.Component {
                                                 id="startingSword"
                                                 onChange={this.changeStartingSword}
                                                 value={this.state.settings.getOption('Starting Sword')}
-                                                custom
+                                                custom="true"
                                             >
                                                 <option>Swordless</option>
                                                 <option>Practice Sword</option>
@@ -523,7 +538,7 @@ export default class Options extends React.Component {
                                                 id="startingTabletCounter"
                                                 onChange={this.changeStartingTablets}
                                                 value={this.state.settings.getOption('Starting Tablet Count')}
-                                                custom
+                                                custom="true"
                                             >
                                                 <option>0</option>
                                                 <option>1</option>
@@ -536,14 +551,26 @@ export default class Options extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
-                                <FormCheck
-                                    type="switch"
-                                    label="Closed Thunderhead"
-                                    id="oth"
-                                    checked={this.state.settings.getOption('Closed Thunderhead')}
-                                    onChange={this.changeClosedThunderhead}
-                                />
+                            <Col xs={4}>
+                                <FormGroup>
+                                    <Row>
+                                        <Col xs={5}>
+                                            <FormLabel htmlFor="openThunderhead">Open Thunderhead</FormLabel>
+                                        </Col>
+                                        <Col xs={4}>
+                                            <FormControl
+                                                as="select"
+                                                id="openThunderhead"
+                                                onChange={this.changeOpenThunderhead}
+                                                value={this.state.settings.getOption('Open Thunderhead')}
+                                                custom="true"
+                                            >
+                                                <option>Ballad</option>
+                                                <option>Open</option>
+                                            </FormControl>
+                                        </Col>
+                                    </Row>
+                                </FormGroup>
                             </Col>
                             <Col>
                                 <FormCheck
@@ -595,7 +622,7 @@ export default class Options extends React.Component {
                                                 id="triforceShuffle"
                                                 onChange={this.changeTriforceShuffle}
                                                 value={this.state.settings.getOption('Triforce Shuffle')}
-                                                custom
+                                                custom="true"
                                             >
                                                 <option>Vanilla</option>
                                                 <option>Sky Keep</option>

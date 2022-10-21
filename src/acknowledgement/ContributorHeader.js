@@ -16,7 +16,7 @@ class ContributorHeader extends React.Component {
                 </span>
                 {
                     Object.entries(urls).map((entry) => (
-                        <SocialIcon iconName={entry[0]} socialURL={entry[1]} />
+                        <SocialIcon key={entry[0]} iconName={entry[0]} socialURL={entry[1]} />
                     ))
                 }
             </div>
@@ -26,10 +26,10 @@ class ContributorHeader extends React.Component {
 
 ContributorHeader.propTypes = {
     name: PropTypes.string.isRequired,
-    urls: PropTypes.arrayOf(PropTypes.shape({
+    urls: PropTypes.shape({
         img: PropTypes.string,
         link: PropTypes.string,
-    })).isRequired,
+    }).isRequired,
 };
 
 export default ContributorHeader;

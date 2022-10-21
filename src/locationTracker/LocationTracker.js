@@ -32,7 +32,7 @@ class LocationTracker extends React.Component {
                     <ul style={{ padding: '2%' }}>
                         {
                             this.props.logic.areas().filter((area) => !areaBlacklist.includes(area)).map((value) => (
-                                <LocationGroupHeader title={value} logic={this.props.logic} colorScheme={this.props.colorScheme} onClick={this[_.camelCase(`open${value}`)]} />
+                                <LocationGroupHeader title={value} key={value} logic={this.props.logic} colorScheme={this.props.colorScheme} onClick={this[_.camelCase(`open${value}`)]} />
                             ))
                         }
                     </ul>
@@ -64,7 +64,7 @@ LocationTracker.propTypes = {
     expandedGroup: PropTypes.string,
     handleGroupClick: PropTypes.func.isRequired,
     handleLocationClick: PropTypes.func.isRequired,
-    colorScheme: PropTypes.instanceOf(ColorScheme).isRequired,
+    colorScheme: PropTypes.shape(ColorScheme).isRequired,
     containerHeight: PropTypes.number.isRequired,
 };
 LocationTracker.defaultProps = {
