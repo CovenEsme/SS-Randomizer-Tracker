@@ -1,46 +1,56 @@
-# Skyward Sword Randomizer Tracker
+# Skyward Sword Randomizer Tracker 📝
 [![Discord](https://discordapp.com/api/guilds/767090759773323264/embed.png?style=shield)](https://discord.gg/evpNKkaaw6)
 
-Web based tracker for the [Skyward Sword Randomizer](https://github.com/lepelog/sslib).
+Web tracker for the [Skyward Sword Randomizer](https://ssrando.com), based on [The Wind Waker Randomizer Tracker](https://github.com/wooferzfg/tww-rando-tracker) maintained by [wooferzfg](https://github.com/wooferzfg)
 
-## Instances
-[Production](https://cjs8487.github.com/SS-Randomizer-Tracker) - generally the recommended version to use. Usually the most stable and most tested version of the tracker.
+## Getting Started 🛫
+* Go to [the tracker](https://devtracker.ssrando.com)
+* Paste your permalink from the [randomizer program](https://ssrando.com) or toggle the settings to match the settings you are going to play
+* Click "Launch Tracker" to begin
 
-### Dev Instances
-In addition to the primary production instance, additional development instances are also hosted. These versions are generally less stable than the production instance and are not guaranteed to be bug free.
-- [Main Dev](https://devtracker.ssrando.com) - relatively stable instance used for staging and testing upcoming releases for the production instance.
-- [Shopsanity](https://shopsanitytracker.ssrando.com) - Contains the newest changes, including full support for shopsanity in the randomizer.
+### Tracking ✅
+* Clicking on the items will mark them as found 🏹
+  * This is a great way to keep track of which items have and which items you have yet to find
+* Clicking on a location name will pop open all the checks you can find in that location 🧭
+  * Hover over a check name to see what you need to get access to it
+  * Click a check to mark it as found (click again to undo)
+* Clicking a dungeon abbreviation will mark it as required ⚔️
+  * Click on a dungeon's boss will pop open all the checks you can find in that boss' dungeon
+  * You can find out what dungeons are required by checking the notice board outside the classroom in-game
 
-## Usage
-When you navigate to the tracker, you will be presented with a UI quite similar to the GUI in the randomizer, where you can fill in your options. These options will make various changes to the tracker, such as filtering out locations that cannot contain progression items, and enabling various special behaviors. ONce you've properly filled in the settings, click *Launch Tracker* to begin tracking.
+### Customization 🎨
+* Clicking "Customization" at the bottom of the tracker will pop open the customization menu
+  * Click the box labelled "In-Game Inventory" to pick an alternative tracker layout
+  * Click a colour to open a colour picker
+* Clicking "Export Tracker" will allow you to save the state of your tracker to a file on your computing device
+  * This is good if you want to stop and continue another time
+* Clicking "Browse..." will allow you to import a previously exported tracker state
 
-The *Launch Tracker* button will bring you to the main tracker page. This page is where all the action happens. The left side of the screen is the **Item Tracker**. This is where you mark your items. Items marked here will be considered as part of the trackers logic.
+## Build Instructions 🧩
+To locally build and run the tracker, you will need to first install [Node.js and npm](https://www.npmjs.com/get-npm).
 
-In the center of the tracker is the **Location Tracker**. This is where the randomizer shows you all of the available locations, and info about your current logical state in the seed. Hovering over a check will show what the requirements logically for the check are, and clicking a check will toggle it as checked/unchecked.
-
-The right side of the tracker contains the **Dungeon Tracker** and **Additional Checks**. Clicking the name of  dungeon will mark it as required or unrequired. When unrequired dungeons are empty (race mode), this will also label the dungeons locations as being able to contain progression. You can track small keys and boss keys in the dungeon tracker as well. When entrance randomization is enabled, a spot to mark an entrance as found will also appear. The **Additional Vhecks** section is populated with unrandomized checks (such as individual crystals) or additional things that are required to unlock randomized locations (such as goddess cubes).
-
-The bottom bar of the tracker contains various controls for the entire tracker. Here, you can export your tracker state to save your progress or import a previous state. Note that states exported from previous versions may not always work on newer versions. Additionally, there are **Customization** options that allow you to configure the colors in the tracker to your liking. For content creators, we recommend using *Dark Mode* along with a Chroma Key on your capture window(s) in order to capture the tracker without a background.
-
-## Reporting Issues
-
-Ran into a bug? Bugs found in the production instance should be reported [here on GitHub](https://github.com/cjs8487/SS-Randomizer-Tracker/issues) or in the Discord. Bugs in development instances should only be reported in the Discord. If you're on the production build, it's also possible that the bug is already fixed and the version just hasn't been released, but don't let that stop you from reporting!
-
-## Running From Source
-Building and running an instance of the tracker locally requires Node v14 and npm. This process will allow you to run any version of the tracker.
-
-1. Clone the repository
-2. Install dependcies
+Clone this repository:
+```
+git clone https://github.com/elliebeph/albw-tracker.git
+```
+Install the required dependencies:
 ```
 npm install
 ```
-3. Build and serve the application
+Then build and start the tracker:
 ```
 npm start
 ```
-4. Access the application at http://localhost:3000
 
-## Shoutouts
-- [lepelog](https://github.com/lepelog), [peppernicus](https://github.com/Peppernicus2000), [azer67](https://github.com/azer67) - Creating the [randomizer](https://github.com/ssrando/ssrando)
-- [Floha](https://github.com/Floha258), [muzugalium](https://github.com/Muzugalium), Extodasher, [CapitanBublo](https://github.com/CapitanBublo) - Fellow devs on the tracker
-- [wooferzfg](https://github.com/wooferzfg) - Creating [the tracker for The Wind Waker Randomizer](https://github.com/wooferzfg/tww-rando-tracker), from which much of the logic subsystem in this tracker is derrived
+## Contributors 🔧
+* [cjs](https://github.com/cjs8487)
+* [Floha](https://github.com/Floha258)
+* [muzugalium](https://github.com/Muzugalium)
+* Extodasher
+* [CapitanBublo](https://github.com/CapitanBublo)
+* [CovenEsme](https://github.com/CovenEsme)
+* [YourAverageLink](https://github.com/YourAverageLink)
+
+## Additional Thanks 📣
+* [lepelog](https://github.com/lepelog), [peppernicus](https://github.com/Peppernicus2000), [azer67](https://github.com/azer67) - Creating the [randomizer](https://github.com/ssrando/ssrando)
+* [wooferzfg](https://github.com/wooferzfg) - Creating [the tracker for The Wind Waker Randomizer](https://github.com/wooferzfg/tww-rando-tracker) - the basis from which this tracker was created
